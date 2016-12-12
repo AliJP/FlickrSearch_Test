@@ -3,81 +3,18 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <style>
-        .container {
-            padding: 10px;
-        }
-
-        .form-search {
-        }
-
-        #query {
-            width: 300px;
-            border-radius: 5px;
-            padding: 10px 12px;
-        }
-
-        .search-result-container {
-            border: 1px solid #ddd;
-            min-height: 500px;
-            margin-top: 15px;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .search-result {
-        }
-
-            .search-result .photo-item {
-                width: 250px;
-                height: 300px;
-                display: inline-block;
-                margin: 10px;
-                cursor: pointer;
-            }
-
-                .search-result .photo-item .photo-image {
-                    width: 250px;
-                    height: 250px;
-                }
-
-                .search-result .photo-item .photo-title {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-        .search-actions {
-            width: 100%;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .search-loading {
-            display: none;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(255,255,255,0.7);
-        }
-
-            .search-loading p {
-                top: 50%;
-                left: 50%;
-                transform: translateY(-50%) translateX(-50%);
-                position: absolute;
-            }
-    </style>
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/Style.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Flickr Search</h1>
             <form class="form-search" action="/search" method="get" role="search">
-                <input type="search" name="query" id="query" placeholder="Search photos ..." required />
-                <!--<input type="submit" value="Search" />-->
+                <input type="search" name="query" id="query" class="form-input" placeholder="Search photos ..." required />
+                <button type="submit" value="Search" class="input-button">
+                    <span class="fa fa-search input-icon"></span>
+                </button>
             </form>
         </header>
         <div class="search-result-container">
@@ -103,7 +40,7 @@
             function Init() {
                 document.getElementsByClassName('form-search')[0].addEventListener('submit', function (event) {
                     event.preventDefault();
-
+                    clearTimeout(searchTimer);
                     var searchQuery = document.getElementById('query').value;
                     if (searchQuery.length > 0) {
                         Photos.loadPhotos(searchQuery);
