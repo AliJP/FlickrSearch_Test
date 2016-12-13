@@ -44,10 +44,14 @@
         photoSlideShowElement.style.display = "none";
     }
 
+    function getDataSource() {
+        return dsPhotos;
+    }
+
     window.JAPGallery = Utility.extend(window.JAPGallery || {}, {
         openGallery: openGallery
         , closeGallery: closeGallery
         , closePhoto: closePhoto
-        , DataSource: dsPhotos
+        , getDataSource: getDataSource
     });
 })(document, window);
