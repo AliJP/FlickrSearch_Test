@@ -74,7 +74,7 @@
     function selectPhoto(event) {
         var selectedElement = event.currentTarget;
         var selectedID = selectedElement.getAttribute("data-photo-id");
-        var selectedPhoto = dsPhotos.find(function (photo) { return photo.id == selectedID });
+        var selectedPhoto = dsPhotos.filter(function (photo) { return photo.id == selectedID })[0];
         if (selectedPhoto.selected) {
             selectedPhoto.selected = false;
             selectedElement.classList.remove("selected-item")
@@ -94,7 +94,7 @@
     }
 
     function showGallery() {
-        JAPGallery.DataSource = dsPhotos.filter(function (photo) { return photo.selected == true });
+        JAPGallery.setDataSource(dsPhotos.filter(function (photo) { return photo.selected == true }));
         JAPGallery.openGallery();
     }
 
