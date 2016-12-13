@@ -61,6 +61,7 @@
 
         getPhotos(searchQuery, function (photos) {
             searchResult.innerHTML = "";
+            dsPhotos = [];
             addPhotos(photos);
         });
     }
@@ -73,7 +74,7 @@
     function selectPhoto(event) {
         var selectedElement = event.currentTarget;
         var selectedID = selectedElement.getAttribute("data-photo-id");
-        var selectedPhoto = Photos.DataSource.find(function (photo) { return photo.id == selectedID });
+        var selectedPhoto = dsPhotos.find(function (photo) { return photo.id == selectedID });
         if (selectedPhoto.selected) {
             selectedPhoto.selected = false;
             selectedElement.classList.remove("selected-item")
@@ -83,7 +84,7 @@
             selectedPhoto.selected = true;
         }
 
-        var selectedLength = Photos.DataSource.filter(function (photo) { return photo.selected == true }).length;
+        var selectedLength = dsPhotos.filter(function (photo) { return photo.selected == true }).length;
 
         var viewGalleryElement = document.getElementsByClassName("show-gallery")[0];
         if (selectedLength > 0)
@@ -93,8 +94,12 @@
     }
 
     function showGallery() {
-        JAPGallery.DataSource = Photos.DataSource.filter(function (photo) { return photo.selected == true });
+        JAPGallery.DataSource = dsPhotos.filter(function (photo) { return photo.selected == true });
         JAPGallery.openGallery();
+    }
+
+    function getDataSource() {
+        return dsPhotos;
     }
 
     window.Photos = Utility.extend(window.Photos || {}, {
@@ -102,6 +107,6 @@
         , loadPhotos: loadPhotos
         , loadMorePhotos: loadMorePhotos
         , showGallery: showGallery
-        , DataSource: dsPhotos
+        , getDataSource: getDataSource
     });
 })(document, window);
