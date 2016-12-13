@@ -21,8 +21,8 @@
 
         galleryContainer.innerHTML = "";
 
-        for (var i = 0 ; i < JAPGallery.DataSource.length; i++) {
-            var galleryPhoto = Photos.getPhotoElement(JAPGallery.DataSource[i])
+        for (var i = 0 ; i < dsPhotos.length; i++) {
+            var galleryPhoto = Photos.getPhotoElement(dsPhotos[i])
             galleryPhoto.addEventListener("click", showPhoto);
             galleryContainer.appendChild(galleryPhoto);
         }
@@ -34,7 +34,7 @@
 
         var selectedElement = event.currentTarget;
         var selectedID = selectedElement.getAttribute("data-photo-id");
-        var photoItem = JAPGallery.DataSource.find(function (photo) { return photo.id == selectedID });
+        var photoItem = dsPhotos.filter(function (photo) { return photo.id == selectedID })[0];
         var photoShowElement = document.getElementsByClassName("photo-show-item")[0];
         photoShowElement.src = Services.getPhotoAddress(photoItem);
     }
@@ -48,10 +48,15 @@
         return dsPhotos;
     }
 
+    function setDataSource(data) {
+        dsPhotos = data;
+    }
+
     window.JAPGallery = Utility.extend(window.JAPGallery || {}, {
         openGallery: openGallery
         , closeGallery: closeGallery
         , closePhoto: closePhoto
         , getDataSource: getDataSource
+        , setDataSource: setDataSource
     });
 })(document, window);
