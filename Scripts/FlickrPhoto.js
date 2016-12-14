@@ -56,7 +56,7 @@
 
     function loadPhotos(searchQuery) {
         pageIndex = 1;
-        pageSize = parseInt(document.getElementsByClassName("search-result")[0].offsetWidth / 320) * 2;
+        pageSize = parseInt(document.getElementsByClassName("search-result")[0].offsetWidth / 250) * 2;
         var searchResult = document.getElementsByClassName("search-result")[0];
 
         getPhotos(searchQuery, function (photos) {
@@ -102,11 +102,22 @@
         return dsPhotos;
     }
 
+    function newSearch() {
+        dsPhotos = [];
+        pageIndex = 1;
+        var searchResult = document.getElementsByClassName("search-result")[0];
+        searchResult.innerHTML = "";
+        document.getElementsByClassName("search-loading")[0].style.display = "none";
+        document.getElementsByClassName("empty-result-message")[0].style.display = "none";
+        document.getElementById("loadMorePhotos").style.display = "none";
+    }
+
     window.Photos = Utility.extend(window.Photos || {}, {
         getPhotoElement: getPhotoElement
         , loadPhotos: loadPhotos
         , loadMorePhotos: loadMorePhotos
         , showGallery: showGallery
+        , newSearch: newSearch
         , getDataSource: getDataSource
     });
 })(document, window);
