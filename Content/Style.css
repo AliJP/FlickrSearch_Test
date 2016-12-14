@@ -45,12 +45,12 @@ body{
     background:#ffffff;
     will-change: box-shadow;
     position: relative;
-    padding: 24px;
+    padding: 16px;
     border-radius: 2px;
 }
     .photo-item {
-        width: 250px;
-        height: 270px;
+        width: 200px;
+        height: 220px;
         display: inline-block;
         margin: 10px;
         cursor: pointer;
@@ -60,9 +60,9 @@ body{
             color:white;
         }
         .photo-item .photo-image {
-            margin:-24px -24px 16px -24px;
-            width: calc(100% + 48px);
-            height: 250px;
+            margin:-16px -16px 8px -16px;
+            width: calc(100% + 32px);
+            height: calc(100% - 12px);
         }
 
         .photo-item .photo-title {
@@ -102,6 +102,7 @@ body{
     right: 50px;
     border: 1px solid #ccc;
     border: none;
+    width:100px;
     background-color: #ff6a00;
     color: white;
     border-radius: 5px;
@@ -116,4 +117,13 @@ body{
         color:#9d9d9d;
         box-shadow:none;
         cursor:not-allowed;
+    }
+
+    .action-button.show-search{
+        top:90px;
+        color:#333;
+        background-color: #fff;
+    }
+    .action-button.new-search{
+        /*top:90px;*/
     }
