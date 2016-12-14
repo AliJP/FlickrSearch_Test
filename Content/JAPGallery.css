@@ -37,6 +37,7 @@
     padding:2px 5px;
     position:absolute;
     top:0;
+    width:25px;
     right:0;
     z-index:2;
 }
