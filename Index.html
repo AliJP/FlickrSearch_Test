@@ -38,6 +38,7 @@
             <header>
                 <h1>Gallery</h1>
                 <button class="action-button show-search" type="button">View Search</button>  
+                <button class="action-button new-search" type="button">New Search</button>  
             </header>
             <div class="gallery-item-container">
             </div>
@@ -87,6 +88,13 @@
                 document.getElementsByClassName('show-search')[0].addEventListener('click', function (event) {
                     event.preventDefault();
                     JAPGallery.closeGallery();
+                });
+                document.getElementsByClassName('new-search')[0].addEventListener('click', function (event) {
+                    event.preventDefault();
+                    clearTimeout(searchTimer);
+                    JAPGallery.closeGallery();
+                    Photos.newSearch();
+                    document.getElementById('query').value = "";
                 });
                 document.getElementsByClassName('close-photo-show')[0].addEventListener('click', function (event) {
                     event.preventDefault();
