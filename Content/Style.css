@@ -60,7 +60,7 @@ body{
             color:white;
         }
         .photo-item .photo-image {
-            margin:-16px -16px 8px -16px;
+            margin:-16px -16px 4px -16px;
             width: calc(100% + 32px);
             height: calc(100% - 12px);
         }
@@ -69,7 +69,7 @@ body{
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            margin:5px;
+            margin:3px;
         }
 
 .search-actions {
